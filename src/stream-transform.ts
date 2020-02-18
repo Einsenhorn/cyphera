@@ -12,7 +12,17 @@ export default {
                     return callback(new Error('Chunk is not a buffer.'))
                 }
 
-                const length: number = chunk.length > count ? Math.floor(chunk.length / count + (chunk.length % count === current + 1 ? 1 : 0)) : 1
+                let length: number = 1
+
+                if (chunk.length > count) {
+                    length = Math.floor(chunk.length / count)
+                    const decimalPart: number = parseFloat((chunk.length / count % 1).toFixed(2))
+
+                    if (current < Math.round(decimalPart * count)) {
+                        length = length + 1
+                    }
+                }
+
                 const buffer: Buffer = Buffer.alloc(length, 0)
 
                 for (let i = 0; i < length; i++) {

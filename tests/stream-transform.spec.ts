@@ -36,6 +36,7 @@ describe('Test StreamTransform module', function () {
         waitReadableDataAndCheckChunkEqualToResult(transforms[2], '2', callback)
         waitReadableDataAndCheckChunkEqualToResult(transforms[3], '\u0000', callback)
         waitReadableDataAndCheckChunkEqualToResult(transforms[4], '\u0000', callback)
+
         transforms.forEach((transform) => transform.write('012'))
     })
 
@@ -49,6 +50,7 @@ describe('Test StreamTransform module', function () {
         waitReadableDataAndCheckChunkEqualToResult(transforms[2], '27', callback)
         waitReadableDataAndCheckChunkEqualToResult(transforms[3], '38', callback)
         waitReadableDataAndCheckChunkEqualToResult(transforms[4], '49', callback)
+
         transforms.forEach((transform) => transform.write('0123456789a'))
     })
 
@@ -74,6 +76,7 @@ describe('Test StreamTransform module', function () {
         waitReadableDataAndCheckChunkEqualToResult(transforms[2], 'lo', callback)
         waitReadableDataAndCheckChunkEqualToResult(transforms[3], 'lr', callback)
         waitReadableDataAndCheckChunkEqualToResult(transforms[4], 'ol', callback)
+
         transforms.forEach((transform) => transform.write('Hello World!'))
     })
 
